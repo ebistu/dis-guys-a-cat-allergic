@@ -9,9 +9,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if $ScoreTimer.is_stopped() and Input.is_action_pressed("start_game"):
-		new_game()
-
+	pass
 
 func game_over():
 	$ScoreTimer.stop()
@@ -49,6 +47,7 @@ func _on_mob_timer_timeout():
 	kiisu.rotation = direction
 	
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	
 	if score > 50:
 		velocity = velocity * 1.25
 	elif score > 100:

@@ -9,7 +9,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if $ScoreTimer.is_stopped() and Input.is_action_pressed("start_game"):
+		new_game()
 
 
 func game_over():

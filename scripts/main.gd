@@ -49,6 +49,15 @@ func _on_mob_timer_timeout():
 	kiisu.rotation = direction
 	
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	if score > 50:
+		velocity = velocity * 1.25
+	elif score > 100:
+		velocity = velocity * 1.5
+	elif score > 150:
+		velocity = velocity * 1.75
+	elif score > 200:
+		velocity = velocity * 2
+	
 	kiisu.linear_velocity = velocity.rotated(direction)
 	
 	add_child(kiisu)

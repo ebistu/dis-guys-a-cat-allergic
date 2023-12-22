@@ -24,7 +24,7 @@ scale = Vector2(1.342, 0.747)
 texture = ExtResource("3_0l3k6")
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.242
 
 [node name="ScoreTimer" type="Timer" parent="."]
 

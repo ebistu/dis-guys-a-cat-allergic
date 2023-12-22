@@ -34,21 +34,23 @@ func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.show_game_over()
-	powerup_drop_round_arr = [0, 0, 0, 0, 0]
-	powerup_has_dropped_arr = [false, false, false, false, false]
+	powerup_drop_round_arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+	powerup_has_dropped_arr = [false, false, false, false, false, false, false, false, false, false]
 	powerupIndex = 0
 	#powerup_drop1 = false
 	#powerup_drop1_round = 0
 
 func new_game():
-	score = 20
+	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get ready")
 	get_tree().call_group("mobs", "queue_free")
-	powerup_drop_round_arr = [randf_range(45,55), randf_range(70,80), randf_range(95,105), randf_range(120,130), randf_range(145,155)]
+	powerup_drop_round_arr = [randi_range(45,55), randi_range(70,80), randi_range(95,105), randi_range(120,130), randi_range(145,155), \
+	randi_range(170,180), randi_range(195,205), randi_range(215,220), randi_range(230,235), randi_range(240,245)]
 	print(powerup_drop_round_arr)
+	$MobTimer.wait_time = 0.5
 
 func _on_score_timer_timeout():
 	score += 1

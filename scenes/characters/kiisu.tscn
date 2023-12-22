@@ -89,7 +89,7 @@ animations = [{
 radius = 10.6667
 height = 58.0
 
-[node name="kiisu" type="RigidBody2D"]
+[node name="kiisu" type="RigidBody2D" groups=["mobs"]]
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_xm0xp")

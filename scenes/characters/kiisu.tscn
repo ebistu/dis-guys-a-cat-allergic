@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://d1jhm84o0h2ti"]
 
-[ext_resource type="Script" path="res://scripts/kiisu.gd" id="1_xm0xp"]
+[ext_resource type="Script" path="res://scenes/characters/kiisu.gd" id="1_xm0xp"]
 [ext_resource type="Texture2D" uid="uid://cppq3wq4kynrq" path="res://textures/cat_black/mustakiisu.png" id="2_o3lbp"]
 [ext_resource type="Texture2D" uid="uid://dpqcmxlf8jf10" path="res://textures/cat_orange/kiisu.png" id="2_v46um"]
 [ext_resource type="Texture2D" uid="uid://bg3ygshyft7h7" path="res://textures/cat_orange/kiisukävely1.png" id="3_kcw7g"]

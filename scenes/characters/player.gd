@@ -3,6 +3,7 @@ extends Area2D
 signal hit
 var screen_size
 var speed = 200
+var indestructible: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -41,13 +42,38 @@ func _process(delta):
 		#$AnimatedSprite2D.flip_v = velocity.y > 0
 		
 
-
-func _on_body_entered(_body):
-	hide()
-	hit.emit()
-	$CollisionShape2D.set_deferred("disabled", true)
+func _on_body_entered(body):
+	match body.type:
+		"mob":
+			if indestructible == false:
+				hide()
+				hit.emit()
+				$CollisionShape2D.set_deferred("disabled", true)
+				powerup("reset")
+		"powerup":
+			powerup(body.poweruptype)
+			body.queue_free()
 
 func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+
+func powerup(type):
+	match type:
+		"reset":
+			scale = Vector2(1,1)
+			speed = 200
+			indestructible = false
+		"shrink":
+			scale = Vector2(0.5,0.5)
+			await get_tree().create_timer(10.0).timeout
+			scale = Vector2(1,1)
+		"speed":
+			speed = speed * 2
+			await get_tree().create_timer(10.0).timeout
+			speed = 200
+		"indestructible":
+			indestructible = true
+			await get_tree().create_timer(10.0).timeout
+			indestructible = false

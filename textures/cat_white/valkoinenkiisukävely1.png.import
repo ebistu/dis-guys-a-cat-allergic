@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpqcmxlf8jf10"
-path="res://.godot/imported/kiisu.png-50962f7f383f2f67d144a8fbb04d746d.ctex"
+uid="uid://ckqrtocry7nko"
+path="res://.godot/imported/valkoinenkiisukävely1.png-49ba0afad70ab3d22c711f3422c65fdc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/kiisu.png"
-dest_files=["res://.godot/imported/kiisu.png-50962f7f383f2f67d144a8fbb04d746d.ctex"]
+source_file="res://textures/cat_white/valkoinenkiisukävely1.png"
+dest_files=["res://.godot/imported/valkoinenkiisukävely1.png-49ba0afad70ab3d22c711f3422c65fdc.ctex"]
 
 [params]
 

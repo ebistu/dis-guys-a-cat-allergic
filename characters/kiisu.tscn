@@ -1,27 +1,87 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1jhm84o0h2ti"]
+[gd_scene load_steps=16 format=3 uid="uid://d1jhm84o0h2ti"]
 
-[ext_resource type="Texture2D" uid="uid://dpqcmxlf8jf10" path="res://textures/kiisu.png" id="1_g4lxb"]
 [ext_resource type="Script" path="res://scripts/kiisu.gd" id="1_xm0xp"]
-[ext_resource type="Texture2D" uid="uid://bg3ygshyft7h7" path="res://textures/kiisukävely1.png" id="2_6lynu"]
-[ext_resource type="Texture2D" uid="uid://dnijx0njf0ae5" path="res://textures/kiisukävely2.png" id="3_55kd0"]
+[ext_resource type="Texture2D" uid="uid://cppq3wq4kynrq" path="res://textures/cat_black/mustakiisu.png" id="2_o3lbp"]
+[ext_resource type="Texture2D" uid="uid://dpqcmxlf8jf10" path="res://textures/cat_orange/kiisu.png" id="2_v46um"]
+[ext_resource type="Texture2D" uid="uid://bg3ygshyft7h7" path="res://textures/cat_orange/kiisukävely1.png" id="3_kcw7g"]
+[ext_resource type="Texture2D" uid="uid://bgkv6rlwnhqpx" path="res://textures/cat_black/mustakiisukävely1.png" id="3_wyllu"]
+[ext_resource type="Texture2D" uid="uid://poqk6mnilhli" path="res://textures/cat_black/mustakiisukävely2.png" id="4_2a4mb"]
+[ext_resource type="Texture2D" uid="uid://dnijx0njf0ae5" path="res://textures/cat_orange/kiisukävely2.png" id="4_osdgq"]
+[ext_resource type="Texture2D" uid="uid://rfuen5jwfjhj" path="res://textures/browncat/ruskeakiisu.png" id="5_cox3v"]
+[ext_resource type="Texture2D" uid="uid://bxbm5ppbsfng2" path="res://textures/browncat/ruskeakiisukävely1.png" id="6_c1fo6"]
+[ext_resource type="Texture2D" uid="uid://js6ciwyed0ly" path="res://textures/browncat/ruskeakiisukävely2.png" id="7_m1h6y"]
+[ext_resource type="Texture2D" uid="uid://c8y2reucqeiy7" path="res://textures/cat_white/valkoinenkiisu.png" id="11_a1658"]
+[ext_resource type="Texture2D" uid="uid://ckqrtocry7nko" path="res://textures/cat_white/valkoinenkiisukävely1.png" id="12_tfcxq"]
+[ext_resource type="Texture2D" uid="uid://luihba6yh5jc" path="res://textures/cat_white/valkoinenkiisukävely2.png" id="13_fbbkx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tpjfg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_g4lxb")
+"texture": ExtResource("2_o3lbp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_6lynu")
+"texture": ExtResource("3_wyllu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("1_g4lxb")
+"texture": ExtResource("2_o3lbp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_55kd0")
+"texture": ExtResource("4_2a4mb")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walk_black",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_cox3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_c1fo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cox3v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_m1h6y")
+}],
+"loop": true,
+"name": &"walk_brown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v46um")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kcw7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v46um")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_osdgq")
+}],
+"loop": true,
+"name": &"walk_orange",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_a1658")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tfcxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_a1658")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fbbkx")
+}],
+"loop": true,
+"name": &"walk_white",
 "speed": 5.0
 }]
 
@@ -35,14 +95,17 @@ gravity_scale = 0.0
 script = ExtResource("1_xm0xp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -32)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_tpjfg")
-animation = &"walk"
+animation = &"walk_black"
+speed_scale = 4.0
 flip_h = true
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 17)
 rotation = 1.5708
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CapsuleShape2D_quk48")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." groups=["mobs"]]

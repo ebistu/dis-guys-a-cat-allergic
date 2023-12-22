@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hkonuvf1so4n"
-path="res://.godot/imported/dis guy_walk2.png-0a71dc0701ebaa2c1f46718e075262e6.ctex"
+uid="uid://js6ciwyed0ly"
+path="res://.godot/imported/ruskeakiisukävely2.png-7987e4b8d752f1e283318cd022709c57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/dis guy_walk2.png"
-dest_files=["res://.godot/imported/dis guy_walk2.png-0a71dc0701ebaa2c1f46718e075262e6.ctex"]
+source_file="res://textures/browncat/ruskeakiisukävely2.png"
+dest_files=["res://.godot/imported/ruskeakiisukävely2.png-7987e4b8d752f1e283318cd022709c57.ctex"]
 
 [params]
 

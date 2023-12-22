@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg3ygshyft7h7"
-path="res://.godot/imported/kiisukävely1.png-ef7f9313996c794f2438aab56dd3eb96.ctex"
+uid="uid://q6o3c4ind1fp"
+path="res://.godot/imported/dis guy.png-50d34db8035881e6deac7a9247c895d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/kiisukävely1.png"
-dest_files=["res://.godot/imported/kiisukävely1.png-ef7f9313996c794f2438aab56dd3eb96.ctex"]
+source_file="res://textures/player/dis guy.png"
+dest_files=["res://.godot/imported/dis guy.png-50d34db8035881e6deac7a9247c895d0.ctex"]
 
 [params]
 

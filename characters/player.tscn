@@ -1,28 +1,33 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfnotq3vj8s2q"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7maw3"]
-[ext_resource type="Texture2D" uid="uid://q6o3c4ind1fp" path="res://textures/dis guy.png" id="2_7ktfy"]
-[ext_resource type="Texture2D" uid="uid://dbdb3kq2nu1pk" path="res://textures/dis guy_walk1.png" id="3_3v0v5"]
-[ext_resource type="Texture2D" uid="uid://hkonuvf1so4n" path="res://textures/dis guy_walk2.png" id="4_ocqu1"]
+[ext_resource type="Texture2D" uid="uid://q6o3c4ind1fp" path="res://textures/player/dis guy.png" id="2_7ktfy"]
+[ext_resource type="Texture2D" uid="uid://dbdb3kq2nu1pk" path="res://textures/player/dis guy_walk1.png" id="3_3v0v5"]
+[ext_resource type="Texture2D" uid="uid://hkonuvf1so4n" path="res://textures/player/dis guy_walk2.png" id="4_ocqu1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bl6cp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_7ktfy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_3v0v5")
+"texture": ExtResource("4_ocqu1")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_7ktfy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_ocqu1")
+"texture": ExtResource("3_3v0v5")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 4.0
+"speed": 3.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umxen"]
@@ -35,12 +40,14 @@ script = ExtResource("1_7maw3")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_bl6cp")
 animation = &"walk"
-frame_progress = 0.765702
+speed_scale = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -3)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CapsuleShape2D_umxen")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

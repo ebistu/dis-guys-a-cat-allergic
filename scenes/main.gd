@@ -4,8 +4,14 @@ extends Node
 @export var powerup_scene: PackedScene
 var score
 var powerup_shrink = preload("res://scenes/collectibles/powerup_shrink.gd")
+var powerup_has_dropped_arr: Array[bool] = [false, false, false, false]
+var powerup_drop_round_arr: Array[int] = [0, 0, 0, 0, 0]
 var powerup_drop1: bool = false
 var powerup_drop1_round: int = 0
+var powerup_drop2: bool = false
+var powerup_drop2_round: int = 0
+var powerup_drop3: bool = false
+var powerup_drop3_round: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -13,12 +19,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if score == powerup_drop1_round and powerup_drop1 == false:
-		var powerup_shrink = powerup_scene.instantiate()
-		powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
-		print(powerup_shrink.position)
-		add_child(powerup_shrink)
-		powerup_drop1 = true
+	var index = 0
+	while index < powerup_has_dropped_arr.size():
+		if score == powerup_drop_round_arr[index] and powerup_has_dropped_arr[index]:
+			var powerup_shrink = powerup_scene.instantiate()
+			powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
+			add_child(powerup_shrink)
+			powerup_has_dropped_arr[index] = true
+			index += 1
+	#if score == powerup_drop1_round and powerup_drop1 == false:
+		#var powerup_shrink = powerup_scene.instantiate()
+		#powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
+		#print(powerup_shrink.position)
+		#add_child(powerup_shrink)
+		#powerup_drop1 = true
 
 func game_over():
 	$ScoreTimer.stop()
@@ -28,15 +42,16 @@ func game_over():
 	powerup_drop1_round = 0
 
 func new_game():
-	score = 10
+	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get ready")
 	get_tree().call_group("mobs", "queue_free")
-	powerup_drop1_round = randf_range(10, 25)
-	print(powerup_drop1_round)
-	
+	var index = 2
+	for i in powerup_drop_round_arr:
+		i = randf_range((index * 10), (index * 10 +30))
+		index += 2
 
 func _on_score_timer_timeout():
 	score += 1
@@ -62,13 +77,13 @@ func _on_mob_timer_timeout():
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
 	
 	if score > 50:
-		velocity = velocity * 1.25
-	elif score > 100:
 		velocity = velocity * 1.5
-	elif score > 150:
-		velocity = velocity * 1.75
-	elif score > 200:
+	elif score > 100:
 		velocity = velocity * 2
+	elif score > 150:
+		velocity = velocity * 2.5
+	elif score > 200:
+		velocity = velocity * 3
 	
 	kiisu.linear_velocity = velocity.rotated(direction)
 	

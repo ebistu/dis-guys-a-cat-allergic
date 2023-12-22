@@ -79,3 +79,7 @@ func _on_mob_timer_timeout():
 		velocity = velocity * 3
 	kiisu.linear_velocity = velocity.rotated(direction)
 	add_child(kiisu)
+
+
+func _on_boss_timer_timeout():
+	pass

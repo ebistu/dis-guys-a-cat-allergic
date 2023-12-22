@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciho4ufwsvgj3"]
+
+[ext_resource type="Texture2D" uid="uid://sawx37vdfm8l" path="res://textures/bosskiisu.png" id="1_8rqdh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ss6gl"]
+radius = 64.0
+height = 256.0
+
+[node name="boss_kiisu" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(24, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_8rqdh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ss6gl")

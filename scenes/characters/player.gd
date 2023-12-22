@@ -67,13 +67,22 @@ func powerup(type):
 			indestructible = false
 		"shrink":
 			scale = Vector2(0.5,0.5)
+			$poweruplabel.text = "smol"
+			$poweruplabel.show()
 			await get_tree().create_timer(10.0).timeout
 			scale = Vector2(1,1)
+			$poweruplabel.hide()
 		"speed":
 			speed = speed * 2
+			$poweruplabel.text = "accelerandoo"
+			$poweruplabel.show()
 			await get_tree().create_timer(10.0).timeout
 			speed = 200
+			$poweruplabel.hide()
 		"indestructible":
 			indestructible = true
+			$poweruplabel.text = "immune to cat"
+			$poweruplabel.show()
 			await get_tree().create_timer(10.0).timeout
 			indestructible = false
+			$poweruplabel.hide()

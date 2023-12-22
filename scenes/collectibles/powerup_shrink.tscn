@@ -18,5 +18,4 @@ texture = ExtResource("1_nasmd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 0.706858
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_des24")

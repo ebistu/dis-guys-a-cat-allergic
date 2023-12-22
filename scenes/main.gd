@@ -8,10 +8,6 @@ var powerup_has_dropped_arr: Array[bool] = [false, false, false, false]
 var powerup_drop_round_arr: Array[int] = [0, 0, 0, 0, 0]
 var powerup_drop1: bool = false
 var powerup_drop1_round: int = 0
-var powerup_drop2: bool = false
-var powerup_drop2_round: int = 0
-var powerup_drop3: bool = false
-var powerup_drop3_round: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -20,13 +16,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var index = 0
-	while index < powerup_has_dropped_arr.size():
-		if score == powerup_drop_round_arr[index] and powerup_has_dropped_arr[index]:
-			var powerup_shrink = powerup_scene.instantiate()
-			powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
-			add_child(powerup_shrink)
-			powerup_has_dropped_arr[index] = true
-			index += 1
+	if score == powerup_drop_round_arr[index] and powerup_has_dropped_arr[index]:
+		var powerup_shrink = powerup_scene.instantiate()
+		powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
+		add_child(powerup_shrink)
+		powerup_has_dropped_arr[index] = true
+		index += 1
 	#if score == powerup_drop1_round and powerup_drop1 == false:
 		#var powerup_shrink = powerup_scene.instantiate()
 		#powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
@@ -50,8 +45,11 @@ func new_game():
 	get_tree().call_group("mobs", "queue_free")
 	var index = 2
 	for i in powerup_drop_round_arr:
-		i = randf_range((index * 10), (index * 10 +30))
+		var upperLimit = index * 10
+		var lowerLimit = index * 10 + 10
+		i = randf_range()
 		index += 2
+	print(powerup_drop_round_arr)
 
 func _on_score_timer_timeout():
 	score += 1

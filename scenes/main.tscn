@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dr3d2iq2oltnv"]
+[gd_scene load_steps=9 format=3 uid="uid://dr3d2iq2oltnv"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_firtl"]
 [ext_resource type="PackedScene" uid="uid://d1jhm84o0h2ti" path="res://scenes/characters/kiisu.tscn" id="2_gro80"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dfnotq3vj8s2q" path="res://scenes/characters/player.tscn" id="4_koaio"]
 [ext_resource type="PackedScene" uid="uid://terc54jg7ob3" path="res://scenes/hud.tscn" id="5_cuvpg"]
 [ext_resource type="PackedScene" uid="uid://dfmv06o18vc8r" path="res://scenes/collectibles/powerup_shrink.tscn" id="6_wqf1i"]
+[ext_resource type="AudioStream" uid="uid://dhfuww1hvog3v" path="res://sounds/dissong.mp3" id="7_0pxf8"]
 
 [sub_resource type="Curve2D" id="Curve2D_bdtwc"]
 _data = {
@@ -18,13 +19,16 @@ script = ExtResource("1_firtl")
 mob_scene = ExtResource("2_gro80")
 powerup_scene = ExtResource("6_wqf1i")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(624, 354.5)
+[node name="background" type="TextureRect" parent="."]
+offset_left = -24.0
+offset_top = -16.0
+offset_right = 976.0
+offset_bottom = 984.0
 scale = Vector2(1.342, 0.747)
 texture = ExtResource("3_0l3k6")
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 0.242
+wait_time = 0.5
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
@@ -49,10 +53,18 @@ position = Vector2(-48, -32)
 [node name="Player" parent="." instance=ExtResource("4_koaio")]
 
 [node name="HUD" parent="." instance=ExtResource("5_cuvpg")]
+process_mode = 3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_0pxf8")
+volume_db = -19.26
+autoplay = true
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]
 [connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="pause_game" from="HUD" to="." method="game_pause"]
+[connection signal="resume_game" from="HUD" to="." method="game_resume"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

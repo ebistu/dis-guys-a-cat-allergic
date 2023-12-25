@@ -4,6 +4,7 @@ signal hit
 var screen_size
 var speed = 200
 var indestructible: bool = false
+var animationOverride: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -30,13 +31,16 @@ func _process(delta):
 	position = position.clamp(Vector2.ZERO, screen_size)
 	
 	if velocity.x != 0:
-		$AnimatedSprite2D.animation = "walk"
+		if animationOverride == false:
+			$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_v = false
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	elif velocity.y != 0:
-		$AnimatedSprite2D.animation = "walk"
+		if animationOverride == false:
+			$AnimatedSprite2D.animation = "walk"
 	else:
-		$AnimatedSprite2D.animation = "default"
+		if animationOverride == false:
+			$AnimatedSprite2D.animation = "default"
 	#elif velocity.y != 0:
 		#$AnimatedSprite2D.animation = "up"
 		#$AnimatedSprite2D.flip_v = velocity.y > 0
@@ -80,9 +84,19 @@ func powerup(type):
 			speed = 200
 			$poweruplabel.hide()
 		"indestructible":
+			$AnimatedSprite2D.animation = "ghost"
+			animationOverride = true
 			indestructible = true
 			$poweruplabel.text = "immune to cat"
 			$poweruplabel.show()
 			await get_tree().create_timer(10.0).timeout
+			animationOverride = false
 			indestructible = false
+			$poweruplabel.hide()
+		"enlarge":
+			scale = Vector2(2,2)
+			$poweruplabel.text = "huge"
+			$poweruplabel.show()
+			await get_tree().create_timer(10.0).timeout
+			scale = Vector2(1,1)
 			$poweruplabel.hide()

@@ -47,6 +47,7 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get ready")
 	get_tree().call_group("mobs", "queue_free")
+	get_tree().call_group("powerups", "queue_free")
 	powerup_drop_round_arr = [randi_range(45,55), randi_range(70,80), randi_range(95,105), randi_range(120,130), randi_range(145,155), \
 	randi_range(170,180), randi_range(195,205), randi_range(215,220), randi_range(230,235), randi_range(240,245)]
 	print(powerup_drop_round_arr)
@@ -68,7 +69,7 @@ func _on_mob_timer_timeout():
 	kiisu.position = mob_spawn_location.position
 	direction += randf_range(-PI / 4, PI / 4)
 	kiisu.rotation = direction
-	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	var velocity = Vector2(randf_range(200.0, 350.0), 0.0)
 	if score > 50:
 		velocity = velocity * 1.5
 	elif score > 100:
@@ -83,3 +84,9 @@ func _on_mob_timer_timeout():
 
 func _on_boss_timer_timeout():
 	pass
+
+func game_pause():
+	get_tree().paused = true
+
+func game_resume():
+	get_tree().paused = false

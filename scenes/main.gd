@@ -41,7 +41,7 @@ func game_over():
 	#powerup_drop1_round = 0
 
 func new_game():
-	score = 0
+	score = 45
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)

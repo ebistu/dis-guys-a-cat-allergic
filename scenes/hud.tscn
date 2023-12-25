@@ -1,7 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://terc54jg7ob3"]
+[gd_scene load_steps=10 format=3 uid="uid://terc54jg7ob3"]
 
 [ext_resource type="Script" path="res://scenes/HUD.gd" id="1_gfryp"]
 [ext_resource type="FontFile" uid="uid://cqdj0do7i55t7" path="res://Xolonium-Regular.ttf" id="2_qe6ru"]
+[ext_resource type="Script" path="res://scenes/HSlider.gd" id="3_a7f7f"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_86tta"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_jvoix"]
+events = [SubResource("InputEventAction_86tta")]
 
 [sub_resource type="InputEventAction" id="InputEventAction_5v40d"]
 action = &"start_game"
@@ -88,6 +95,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_qe6ru")
 theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_jvoix")
 text = "Resume"
 
 [node name="StartButton" type="Button" parent="."]
@@ -119,7 +127,17 @@ text = "Pause"
 [node name="MessageTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="HSlider" type="HSlider" parent="."]
+visible = false
+offset_left = 107.0
+offset_top = -9.0
+offset_right = 411.0
+offset_bottom = 75.0
+max_value = 50.0
+script = ExtResource("3_a7f7f")
+
 [connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="value_changed" from="HSlider" to="HSlider" method="_on_value_changed"]

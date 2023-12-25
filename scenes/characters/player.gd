@@ -64,39 +64,28 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 
 func powerup(type):
-	match type:
-		"reset":
-			scale = Vector2(1,1)
-			speed = 200
-			indestructible = false
-		"shrink":
-			scale = Vector2(0.5,0.5)
-			$poweruplabel.text = "smol"
-			$poweruplabel.show()
-			await get_tree().create_timer(10.0).timeout
-			scale = Vector2(1,1)
-			$poweruplabel.hide()
-		"speed":
-			speed = speed * 2
-			$poweruplabel.text = "accelerandoo"
-			$poweruplabel.show()
-			await get_tree().create_timer(10.0).timeout
-			speed = 200
-			$poweruplabel.hide()
-		"indestructible":
-			$AnimatedSprite2D.animation = "ghost"
-			animationOverride = true
-			indestructible = true
-			$poweruplabel.text = "immune to cat"
-			$poweruplabel.show()
-			await get_tree().create_timer(10.0).timeout
-			animationOverride = false
-			indestructible = false
-			$poweruplabel.hide()
-		"enlarge":
-			scale = Vector2(2,2)
-			$poweruplabel.text = "huge"
-			$poweruplabel.show()
-			await get_tree().create_timer(10.0).timeout
-			scale = Vector2(1,1)
-			$poweruplabel.hide()
+	if type == "reset":
+		scale = Vector2(1,1)
+		speed = 200
+		indestructible = false
+		animationOverride = false
+		$poweruplabel.hide()
+	else:
+		$poweruplabel.show()
+		match type:
+			"shrink":
+				scale = Vector2(0.5,0.5)
+				$poweruplabel.text = "smol"
+			"speed":
+				speed = speed * 2
+				$poweruplabel.text = "accelerandoo"
+			"indestructible":
+				$AnimatedSprite2D.animation = "ghost"
+				animationOverride = true
+				indestructible = true
+				$poweruplabel.text = "immune to cat"
+			"enlarge":
+				scale = Vector2(1.5,1.5)
+				$poweruplabel.text = "huge"
+		await get_tree().create_timer(10.0).timeout
+		powerup("reset")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dr3d2iq2oltnv"]
+[gd_scene load_steps=10 format=3 uid="uid://dr3d2iq2oltnv"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_firtl"]
 [ext_resource type="PackedScene" uid="uid://d1jhm84o0h2ti" path="res://scenes/characters/kiisu.tscn" id="2_gro80"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dfnotq3vj8s2q" path="res://scenes/characters/player.tscn" id="4_koaio"]
 [ext_resource type="PackedScene" uid="uid://terc54jg7ob3" path="res://scenes/hud.tscn" id="5_cuvpg"]
 [ext_resource type="PackedScene" uid="uid://dfmv06o18vc8r" path="res://scenes/collectibles/powerup_shrink.tscn" id="6_wqf1i"]
-[ext_resource type="AudioStream" uid="uid://dhfuww1hvog3v" path="res://sounds/dissong.mp3" id="7_0pxf8"]
+[ext_resource type="AudioStream" uid="uid://bagnl6hr4lw4y" path="res://sounds/dissong.mp3" id="7_0pxf8"]
+[ext_resource type="AudioStream" uid="uid://76agkquratkm" path="res://sounds/powweri.mp3" id="8_d8hki"]
 
 [sub_resource type="Curve2D" id="Curve2D_bdtwc"]
 _data = {
@@ -55,16 +56,21 @@ position = Vector2(-48, -32)
 [node name="HUD" parent="." instance=ExtResource("5_cuvpg")]
 process_mode = 3
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="main_music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_0pxf8")
-volume_db = -19.26
+volume_db = -16.66
 autoplay = true
+
+[node name="powerup_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_d8hki")
+volume_db = -9.75
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="BossTimer" to="." method="_on_boss_timer_timeout"]
 [connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="picked_powerup" from="Player" to="." method="play_powerup_sound"]
 [connection signal="pause_game" from="HUD" to="." method="game_pause"]
 [connection signal="resume_game" from="HUD" to="." method="game_resume"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

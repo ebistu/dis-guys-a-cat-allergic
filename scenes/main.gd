@@ -41,7 +41,7 @@ func game_over():
 	#powerup_drop1_round = 0
 
 func new_game():
-	score = 45
+	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
@@ -90,3 +90,6 @@ func game_pause():
 
 func game_resume():
 	get_tree().paused = false
+	
+func play_powerup_sound():
+	$powerup_sound.play()

@@ -1,6 +1,7 @@
 extends Area2D
 
 signal hit
+signal picked_powerup
 var screen_size
 var speed = 200
 var indestructible: bool = false
@@ -72,6 +73,7 @@ func powerup(type):
 		$poweruplabel.hide()
 	else:
 		$poweruplabel.show()
+		picked_powerup.emit()
 		match type:
 			"shrink":
 				scale = Vector2(0.5,0.5)

@@ -89,5 +89,6 @@ func powerup(type):
 			"enlarge":
 				scale = Vector2(1.5,1.5)
 				$poweruplabel.text = "huge"
-		await get_tree().create_timer(10.0).timeout
+		var ran_powerup_time = randf_range(3, 15)
+		await get_tree().create_timer(ran_powerup_time).timeout
 		powerup("reset")

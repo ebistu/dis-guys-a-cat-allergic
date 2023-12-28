@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/HUD.gd" id="1_gfryp"]
 [ext_resource type="FontFile" uid="uid://cqdj0do7i55t7" path="res://Xolonium-Regular.ttf" id="2_qe6ru"]
 [ext_resource type="Script" path="res://scenes/HSlider.gd" id="3_a7f7f"]
-[ext_resource type="PackedScene" path="res://scenes/multiplayer_controller.tscn" id="4_1u76y"]
+[ext_resource type="PackedScene" uid="uid://bua2fp70xec5n" path="res://scenes/multiplayer_controller.tscn" id="4_1u76y"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_86tta"]
 action = &"start_game"

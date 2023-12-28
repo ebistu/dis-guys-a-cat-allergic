@@ -3,7 +3,7 @@ extends CanvasLayer
 signal start_game
 signal pause_game
 signal resume_game
-signal start_multiplayer_game
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$PauseButton.hide()

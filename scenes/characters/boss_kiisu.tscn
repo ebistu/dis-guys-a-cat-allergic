@@ -9,7 +9,7 @@ height = 256.0
 [node name="boss_kiisu" type="RigidBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-8, -16)
+position = Vector2(24, 0)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_8rqdh")
 flip_h = true

@@ -26,7 +26,7 @@ func game_over():
 	powerupIndex = 0
 
 func new_game():
-	score = 0
+	score = 40
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)

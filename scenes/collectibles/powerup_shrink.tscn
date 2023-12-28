@@ -33,7 +33,6 @@ gravity_scale = 0.0
 script = ExtResource("1_2pfsy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.56, 0.56)
 sprite_frames = SubResource("SpriteFrames_y1s7f")
 animation = &"powerup"
 

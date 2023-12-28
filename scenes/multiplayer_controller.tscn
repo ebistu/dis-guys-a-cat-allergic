@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://bua2fp70xec5n"]
+
+[ext_resource type="Script" path="res://scenes/multiplayer_controller.gd" id="1_tkfca"]
+
+[node name="MultiplayerController" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tkfca")
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 304.0
+offset_top = 64.0
+offset_right = 368.0
+offset_bottom = 96.0
+text = "Start
+"
+
+[node name="JoinButton" type="Button" parent="."]
+offset_left = 216.0
+offset_top = 64.0
+offset_right = 280.0
+offset_bottom = 96.0
+text = "Join
+"
+
+[node name="HostButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 96.0
+text = "Host
+"
+
+[connection signal="button_down" from="StartButton" to="." method="_on_start_button_button_down"]
+[connection signal="button_down" from="JoinButton" to="." method="_on_join_button_button_down"]
+[connection signal="button_down" from="HostButton" to="." method="_on_host_button_button_down"]

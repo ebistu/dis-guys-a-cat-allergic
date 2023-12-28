@@ -19,7 +19,7 @@ func _process(delta):
 		powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
 		add_child(powerup_shrink)
 		powerup_has_dropped_arr[powerupIndex] = true
-		if powerupIndex < 10:
+		if powerupIndex < 100:
 			powerupIndex += 1
 
 func game_over():
@@ -72,7 +72,7 @@ func _on_mob_timer_timeout():
 	kiisu.linear_velocity = velocity.rotated(direction)
 	add_child(kiisu)
 
-
+ 
 func _on_boss_timer_timeout():
 	pass
 

@@ -3,12 +3,10 @@ extends Node
 @export var mob_scene: PackedScene
 @export var powerup_scene: PackedScene
 var score
-var powerup_shrink = preload("res://scenes/collectibles/powerup_shrink.gd")
 var powerupIndex = 0
 var powerup_has_dropped_arr: Array[bool] = [false, false, false, false, false]
 var powerup_drop_round_arr: Array[int] = [0, 0, 0, 0, 0]
-var powerup_drop1: bool = false
-var powerup_drop1_round: int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -21,14 +19,8 @@ func _process(delta):
 		powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
 		add_child(powerup_shrink)
 		powerup_has_dropped_arr[powerupIndex] = true
-		if powerupIndex < 4:
+		if powerupIndex < 10:
 			powerupIndex += 1
-	#if score == powerup_drop1_round and powerup_drop1 == false:
-		#var powerup_shrink = powerup_scene.instantiate()
-		#powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
-		#print(powerup_shrink.position)
-		#add_child(powerup_shrink)
-		#powerup_drop1 = true
 
 func game_over():
 	$ScoreTimer.stop()
@@ -37,8 +29,6 @@ func game_over():
 	powerup_drop_round_arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 	powerup_has_dropped_arr = [false, false, false, false, false, false, false, false, false, false]
 	powerupIndex = 0
-	#powerup_drop1 = false
-	#powerup_drop1_round = 0
 
 func new_game():
 	score = 0

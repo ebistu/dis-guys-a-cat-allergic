@@ -6,6 +6,7 @@ var screen_size
 var speed = 200
 var indestructible: bool = false
 var animationOverride: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -67,7 +68,7 @@ func start(pos):
 func powerup(type):
 	if type == "reset":
 		scale = Vector2(1,1)
-		speed = 200
+		speed = speed
 		indestructible = false
 		animationOverride = false
 		$poweruplabel.hide()

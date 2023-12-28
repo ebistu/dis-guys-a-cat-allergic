@@ -42,6 +42,7 @@ func new_game():
 	randi_range(170,180), randi_range(195,205), randi_range(215,220), randi_range(230,235), randi_range(240,245)]
 	print(powerup_drop_round_arr)
 	$MobTimer.wait_time = 0.5
+	$Player.powerup("Enlarge")
 
 func _on_score_timer_timeout():
 	score += 1

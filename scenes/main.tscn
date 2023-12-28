@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://d1jhm84o0h2ti" path="res://scenes/characters/kiisu.tscn" id="2_gro80"]
 [ext_resource type="Texture2D" uid="uid://cegoryewnnrtx" path="res://textures/environment/ground.png" id="3_0l3k6"]
 [ext_resource type="PackedScene" uid="uid://dfnotq3vj8s2q" path="res://scenes/characters/player.tscn" id="4_koaio"]
-[ext_resource type="PackedScene" uid="uid://terc54jg7ob3" path="res://scenes/hud.tscn" id="5_cuvpg"]
 [ext_resource type="PackedScene" uid="uid://dfmv06o18vc8r" path="res://scenes/collectibles/powerup_shrink.tscn" id="6_wqf1i"]
 [ext_resource type="AudioStream" uid="uid://bagnl6hr4lw4y" path="res://sounds/dissong.mp3" id="7_0pxf8"]
 [ext_resource type="AudioStream" uid="uid://76agkquratkm" path="res://sounds/powweri.mp3" id="8_d8hki"]
+[ext_resource type="PackedScene" uid="uid://terc54jg7ob3" path="res://scenes/hud.tscn" id="8_veov3"]
 
 [sub_resource type="Curve2D" id="Curve2D_bdtwc"]
 _data = {
@@ -53,8 +53,7 @@ position = Vector2(-48, -32)
 
 [node name="Player" parent="." instance=ExtResource("4_koaio")]
 
-[node name="HUD" parent="." instance=ExtResource("5_cuvpg")]
-process_mode = 3
+[node name="HUD" parent="." instance=ExtResource("8_veov3")]
 
 [node name="main_music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_0pxf8")

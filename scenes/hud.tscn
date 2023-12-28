@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://terc54jg7ob3"]
+[gd_scene load_steps=10 format=3 uid="uid://terc54jg7ob3"]
 
 [ext_resource type="Script" path="res://scenes/HUD.gd" id="1_gfryp"]
 [ext_resource type="FontFile" uid="uid://cqdj0do7i55t7" path="res://Xolonium-Regular.ttf" id="2_qe6ru"]
 [ext_resource type="Script" path="res://scenes/HSlider.gd" id="3_a7f7f"]
-[ext_resource type="PackedScene" path="res://scenes/multiplayer_controller.tscn" id="4_1u76y"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_86tta"]
 action = &"start_game"
@@ -136,12 +135,6 @@ offset_right = 411.0
 offset_bottom = 75.0
 max_value = 50.0
 script = ExtResource("3_a7f7f")
-
-[node name="MultiplayerController" parent="." instance=ExtResource("4_1u76y")]
-offset_left = 7.0
-offset_top = -47.0
-offset_right = -1182.0
-offset_bottom = -745.0
 
 [connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

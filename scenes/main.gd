@@ -3,40 +3,54 @@ extends Node
 @export var mob_scene: PackedScene
 @export var powerup_scene: PackedScene
 var score
+var powerup_shrink = preload("res://scenes/collectibles/powerup_shrink.gd")
 var powerupIndex = 0
-var powerup_has_dropped_arr: Array[bool] = [false, false, false, false, false, false, false, false, false, false]
-var powerup_drop_round_arr: Array[int] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-var boss_kiisu_done = false
-
+var powerup_has_dropped_arr: Array[bool] = [false, false, false, false, false]
+var powerup_drop_round_arr: Array[int] = [0, 0, 0, 0, 0]
+var powerup_drop1: bool = false
+var powerup_drop1_round: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	powerup_drop()
+func _process(delta):
+	if score == powerup_drop_round_arr[powerupIndex] and powerup_has_dropped_arr[powerupIndex] == false:
+		var powerup_shrink = powerup_scene.instantiate()
+		powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
+		add_child(powerup_shrink)
+		powerup_has_dropped_arr[powerupIndex] = true
+		if powerupIndex < 4:
+			powerupIndex += 1
+	#if score == powerup_drop1_round and powerup_drop1 == false:
+		#var powerup_shrink = powerup_scene.instantiate()
+		#powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
+		#print(powerup_shrink.position)
+		#add_child(powerup_shrink)
+		#powerup_drop1 = true
 
 func game_over():
 	$ScoreTimer.stop()
 	$MobTimer.stop()
-	$BossTimer.stop()
 	$HUD.show_game_over()
 	powerup_drop_round_arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 	powerup_has_dropped_arr = [false, false, false, false, false, false, false, false, false, false]
 	powerupIndex = 0
+	#powerup_drop1 = false
+	#powerup_drop1_round = 0
 
 func new_game():
-	score = 40
+	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get ready")
 	get_tree().call_group("mobs", "queue_free")
 	get_tree().call_group("powerups", "queue_free")
-	powerup_drop_round_arr = [randi_range(40,60), randi_range(65,85), randi_range(90,110), randi_range(115,135), randi_range(140,160), \
-	randi_range(165,185), randi_range(190,210), randi_range(220,230), randi_range(230,235), randi_range(240,245)]
+	powerup_drop_round_arr = [randi_range(45,55), randi_range(70,80), randi_range(95,105), randi_range(120,130), randi_range(145,155), \
+	randi_range(170,180), randi_range(195,205), randi_range(215,220), randi_range(230,235), randi_range(240,245)]
 	print(powerup_drop_round_arr)
-	print(powerup_has_dropped_arr)
 	$MobTimer.wait_time = 0.5
 
 func _on_score_timer_timeout():
@@ -67,6 +81,7 @@ func _on_mob_timer_timeout():
 	kiisu.linear_velocity = velocity.rotated(direction)
 	add_child(kiisu)
 
+
 func _on_boss_timer_timeout():
 	pass
 
@@ -78,12 +93,3 @@ func game_resume():
 	
 func play_powerup_sound():
 	$powerup_sound.play()
-
-func powerup_drop():
-	if score == powerup_drop_round_arr[powerupIndex] and powerup_has_dropped_arr[powerupIndex] == false:
-		var powerup_shrink = powerup_scene.instantiate()
-		powerup_shrink.position = Vector2(randf_range(100, 1180), randf_range(50,670))
-		add_child(powerup_shrink)
-		powerup_has_dropped_arr[powerupIndex] = true
-		if powerupIndex < 4:
-			powerupIndex += 1

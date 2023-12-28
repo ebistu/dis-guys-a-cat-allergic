@@ -1,27 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfmv06o18vc8r"]
+[gd_scene load_steps=4 format=3 uid="uid://dfmv06o18vc8r"]
 
 [ext_resource type="Script" path="res://scenes/collectibles/powerup_shrink.gd" id="1_2pfsy"]
 [ext_resource type="Texture2D" uid="uid://b2nqfqytkkvpk" path="res://textures/collectibles/shrinkpill.png" id="1_nasmd"]
-[ext_resource type="Texture2D" uid="uid://dj1832cgb3gjw" path="res://textures/collectibles/enlargepill.png" id="2_ybut0"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_y1s7f"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_ybut0")
-}],
-"loop": true,
-"name": &"powerdown",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_nasmd")
-}],
-"loop": true,
-"name": &"powerup",
-"speed": 5.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_des24"]
 radius = 4.31084
@@ -32,9 +12,9 @@ collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_2pfsy")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_y1s7f")
-animation = &"powerup"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_nasmd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 0.706858
